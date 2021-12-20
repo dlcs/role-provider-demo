@@ -1,6 +1,7 @@
 LICENSE
 readme.md
 Dockerfile
+docker-compose.yml
 .env
 .env.dist
 .dockerignore
