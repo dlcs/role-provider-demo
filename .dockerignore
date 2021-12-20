@@ -1,0 +1,8 @@
+LICENSE
+readme.md
+Dockerfile
+.env
+.env.dist
+.dockerignore
+flask_session/
+venv/

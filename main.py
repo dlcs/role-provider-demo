@@ -9,6 +9,8 @@ from flask_httpauth import HTTPBasicAuth
 SESSION_KEY = "session_user"
 ACCESS_KEY = os.environ.get("ACCESS_KEY")
 ACCESS_SECRET = os.environ.get("ACCESS_SECRET")
+DLCS_ROOT = os.environ.get("DLCS_ROOT", "dlcs.digirati.io")
+DLCS_CUSTOMER = int(os.environ.get("DLCS_CUSTOMER", 2))
 
 auth = HTTPBasicAuth()
 
@@ -69,8 +71,8 @@ def do_login():
 
     username = request.form["username"]
     password = request.form["password"]
-    dlcs_root = request.form["dlcs"] or settings["dlcs-default-root"]
-    dlcs_customer = request.form["customer"] or settings["dlcs-customer"]
+    dlcs_root = request.form["dlcs"] or DLCS_ROOT
+    dlcs_customer = request.form["customer"] or DLCS_CUSTOMER
 
     success, user_roles = _verify_auth(username, password)
 
@@ -130,8 +132,8 @@ def verify_user(username, password):
 
 def _render_login(error=None, message=None):
     return render_template("login.html",
-                           default_customer=settings["dlcs-customer"],
-                           default_root=settings["dlcs-default-root"],
+                           default_customer=DLCS_CUSTOMER,
+                           default_root=DLCS_ROOT,
                            users=settings["users"],
                            error=error,
                            message=message)
