@@ -1,5 +1,6 @@
 {
   "dlcs-default-root": "dlcs.digirati.io",
+  "dlcs-customer": 2,
   "users": [
     {
       "username": "no-roles",

@@ -10,20 +10,32 @@
 <body>
 <div class="container-lg mt-4">
     <div class="row">
-        <form>
+        {% if error %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Login Error!</strong> {{ error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        <form action="/login" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username">
+                <input type="text" class="form-control" id="username" name="username">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="password" name="password">
             </div>
             <div class="mb-3">
                 <label for="dlcs" class="form-label">DLCS Root</label>
                 <input type="text" class="form-control" id="dlcs" aria-describedby="dlcsHelp"
-                       placeholder="{{ default_root }}">
+                       placeholder="{{ default_root }}" name="dlcs">
                 <div id="dlcsHelp" class="form-text">Root of DLCS instance to use for this session.</div>
+            </div>
+            <div class="mb-3">
+                <label for="customer" class="form-label">DLCS Customer</label>
+                <input type="text" class="form-control" id="customer" aria-describedby="customerHelp"
+                       placeholder="{{ default_customer }}" name="customer">
+                <div id="customerHelp" class="form-text">DLCS Customer Id for this session.</div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
