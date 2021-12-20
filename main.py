@@ -4,8 +4,13 @@ import uuid
 from flask import Flask, render_template, session, request, redirect, abort, jsonify
 from flask_session import Session
 from flask_caching import Cache
+from flask_httpauth import HTTPBasicAuth
 
 SESSION_KEY = 'session_user'
+ACCESS_KEY = os.environ.get('ACCESS_KEY')
+ACCESS_SECRET = os.environ.get('ACCESS_SECRET')
+
+auth = HTTPBasicAuth()
 
 app = Flask('dlcs-role-provider')
 
@@ -77,6 +82,8 @@ def do_login():
             "roles": user_roles,
             "customer": dlcs_customer
         }
+
+        # cache user-roles for later retrieval
         cache.set(_get_roles_cache_key(session_key), user_roles)
 
         # redirect to DLCS with a session id
@@ -87,6 +94,7 @@ def do_login():
 
 
 @app.route("/roles")
+@auth.login_required
 def roles():
     """
     Return list of roles for token specified in ?token= query parameter
@@ -98,6 +106,11 @@ def roles():
             return jsonify(cached_roles)
 
     abort(404, description="Resource not found")
+
+
+@auth.verify_password
+def verify_user(username, password):
+    return username == ACCESS_KEY and password == ACCESS_SECRET
 
 
 def _render_login(error=None):
