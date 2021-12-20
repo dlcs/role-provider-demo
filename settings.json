@@ -1,0 +1,32 @@
+{
+  "dlcs-default-root": "dlcs.digirati.io",
+  "users": [
+    {
+      "username": "no-roles",
+      "password": "no-roles",
+      "roles": []
+    },
+    {
+      "username": "restricted",
+      "password": "restricted",
+      "roles": [
+        "restricted"
+      ]
+    },
+    {
+      "username": "secret",
+      "password": "secret",
+      "roles": [
+        "secret"
+      ]
+    },
+    {
+      "username": "superuser",
+      "password": "superuser",
+      "roles": [
+        "restricted",
+        "secret"
+      ]
+    }
+  ]
+}
