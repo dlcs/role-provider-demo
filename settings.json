@@ -3,30 +3,28 @@
   "dlcs-customer": 2,
   "users": [
     {
-      "username": "no-roles",
-      "password": "no-roles",
-      "roles": []
-    },
-    {
       "username": "restricted",
       "password": "restricted",
       "roles": [
-        "restricted"
+        "http://dlcs-role-provider/roles/clickthrough",
+        "http://dlcs-role-provider/roles/restricted"
       ]
     },
     {
       "username": "secret",
       "password": "secret",
       "roles": [
-        "secret"
+        "http://dlcs-role-provider/roles/clickthrough",
+        "http://dlcs-role-provider/roles/secret"
       ]
     },
     {
       "username": "superuser",
       "password": "superuser",
       "roles": [
-        "restricted",
-        "secret"
+        "http://dlcs-role-provider/roles/clickthrough",
+        "http://dlcs-role-provider/roles/restricted",
+        "http://dlcs-role-provider/roles/secret"
       ]
     }
   ]
