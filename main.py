@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, render_template
 
-app = Flask(__name__)
+app = Flask("dlcs-role-provider")
 
 
-@app.route("/login")
+@app.route("/login", methods=['GET'])
 def login():
-    pass
+    return render_template("login.html")
 
 
 @app.route("/info")
@@ -16,3 +16,7 @@ def info():
 @app.route("/roles")
 def roles():
     pass
+
+
+if __name__ == "__main__":
+    app.run(threaded=True, debug=True)
