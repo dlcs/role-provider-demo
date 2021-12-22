@@ -97,14 +97,14 @@ def do_login():
         return _render_login(error="Unknown Credentials")
 
 
-@app.route("/roles")
+@app.route("/roles", methods=["POST"])
 @auth.login_required
 def roles():
     """
     Return list of roles for token specified in ?token= query parameter
     """
 
-    args = request.args
+    args = request.form
     if token := args.get("token", None):
         if cached_roles := cache.get(_get_roles_cache_key(token)):
             return jsonify(cached_roles)
