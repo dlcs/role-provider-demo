@@ -33,6 +33,7 @@ The app requires 3 environment variables to run, see `.env.dist` for samples:
 * `ACCESS_SECRET` - Basic auth password for access roles for token.
 * `DLCS_ROOT` - The default DLCS root to use for testing (without `https://`). Can be specified at login.
 * `DLCS_CUSTOMER` - The DLCS customer to use for testing. Can be specified at login.
+* `DLCS_AUTHSERVICE` - The name of the authService that this Role-Provider is for.
 
 ### `settings.json`
 

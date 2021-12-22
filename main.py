@@ -11,6 +11,7 @@ ACCESS_KEY = os.environ.get("ACCESS_KEY")
 ACCESS_SECRET = os.environ.get("ACCESS_SECRET")
 DLCS_ROOT = os.environ.get("DLCS_ROOT", "dlcs.digirati.io")
 DLCS_CUSTOMER = int(os.environ.get("DLCS_CUSTOMER", 2))
+DLCS_AUTHSERVICE = os.environ.get("DLCS_AUTHSERVICE")
 
 auth = HTTPBasicAuth()
 
@@ -151,7 +152,7 @@ def _redirect_to_dlcs(session_user: dict):
     dlcs_root = session_user["dlcs_root"]
     dlcs_customer = session_user["customer"]
     session_key = session_user["token"]
-    return redirect(f"https://{dlcs_root}/auth/{dlcs_customer}/fromcas?token={session_key}")
+    return redirect(f"https://{dlcs_root}/auth/{dlcs_customer}/{DLCS_AUTHSERVICE}?token={session_key}")
 
 
 def _get_roles_cache_key(token: str):
