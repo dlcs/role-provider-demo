@@ -6,6 +6,16 @@ Basic app for demonstrating DLCS role-provider functionality.
 
 This is a basic app that shows the minimum functionality for a role-provider with no downstream dependency.
 
+See [Protagonist Access-Control RFC](https://github.com/dlcs/protagonist/blob/develop/docs/rfcs/005-Access-Control.md) for more details on role-provider.
+
+## Routes
+
+This application exposes the following routes:
+
+* `/login` - renders login page and accepts POSTed form to validate user. On successful validation the user is redirected back to the configured DLCS instance.
+* `/logout` - clears user session
+* `/roles` - supports POST operation to get configured roles for current user. Protected by basic authentication.
+
 ## Getting Started
 
 The app can be built and run via the included dockerfile, for example:
